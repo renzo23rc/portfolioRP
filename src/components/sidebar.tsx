@@ -25,14 +25,14 @@ export function Sidebar({ activeSection }: SidebarProps) {
         <BrandLogo />
         <div
           className={cn(
-            "mt-2 overflow-hidden transition-all duration-500",
+            "mt-1 overflow-hidden transition-all duration-500",
             activeSection && activeSection !== "hero"
               ? "max-h-10 opacity-100"
               : "max-h-0 opacity-0",
           )}
         >
           <Link href="#hero" className="block">
-            <p className="text-base font-bold tracking-tight text-foreground/90 transition-colors hover:text-primary">
+            <p className="font-display text-base italic tracking-[0.03em] text-foreground/90 transition-colors hover:text-primary">
               Renzo Portela
             </p>
           </Link>
@@ -40,7 +40,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="mt-12 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
+      <nav className="mt-8 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
         {navItems.map((item) => {
           const isActive = activeSection === item.section;
           return (
