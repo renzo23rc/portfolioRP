@@ -26,10 +26,10 @@ export function BrandLogo({ showName = false }: BrandLogoProps) {
           }
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+          <span className="font-display text-xl italic tracking-[0.02em] text-foreground transition-colors group-hover:text-primary">
             R
           </span>
-          <span className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+          <span className="font-display text-xl italic tracking-[0.02em] text-foreground transition-colors group-hover:text-primary">
             P
           </span>
         </motion.div>
