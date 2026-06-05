@@ -34,7 +34,7 @@ export function CursorLight() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[9999] hidden md:block"
+      className="pointer-events-none fixed inset-0 z-0 hidden md:block"
       aria-hidden="true"
     >
       <div
