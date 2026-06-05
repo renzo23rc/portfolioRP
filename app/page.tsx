@@ -40,7 +40,7 @@ function NumberedHeading({
       >
         {number.padStart(2, "0")}
       </span>
-      <h2 className="relative flex items-center gap-4 text-2xl font-bold md:text-3xl">
+      <h2 className="font-display relative flex items-center gap-4 text-2xl font-bold md:text-3xl">
         <span className="font-mono text-sm text-primary md:text-base">
           {number}.
         </span>
@@ -71,7 +71,7 @@ export default function HomePage() {
               {portfolioData.hero.greeting}
               <BlinkingCursor />
             </p>
-            <h1 className="text-5xl font-bold tracking-tighter md:text-7xl lg:text-8xl">
+            <h1 className="font-display text-5xl font-bold tracking-tighter md:text-7xl lg:text-8xl">
               {portfolioData.hero.name}
               <span className="text-primary">.</span>
             </h1>
@@ -169,7 +169,7 @@ export default function HomePage() {
                   <div className="absolute left-0 top-0 h-full w-px bg-border/50 group-last:bg-transparent max-md:hidden" />
                   <div className="pb-8 pl-6 max-md:pl-0">
                     <div className="absolute left-[-4px] top-[6px] h-2 w-2 rounded-full border-2 border-primary bg-background max-md:hidden" />
-                    <h3 className="text-xl font-semibold">{item.role}</h3>
+                    <h3 className="font-display text-xl font-semibold">{item.role}</h3>
                     <p className="text-primary">{item.company}</p>
                     <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground md:hidden">
                       {item.period}
@@ -237,7 +237,7 @@ export default function HomePage() {
                   <p className="font-mono text-xs uppercase tracking-widest text-primary">
                     Proyecto Destacado
                   </p>
-                  <h3 className="mt-2 text-2xl font-bold md:text-3xl">
+                  <h3 className="font-display mt-2 text-2xl font-bold md:text-3xl">
                     {project.title}
                   </h3>
                   <div
