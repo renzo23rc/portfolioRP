@@ -32,7 +32,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
           )}
         >
           <Link href="#hero" className="block">
-            <p className="font-display text-sm italic tracking-[0.04em] text-foreground/80 hover:text-primary transition-colors">
+            <p className="text-base font-bold tracking-tight text-foreground/90 transition-colors hover:text-primary">
               Renzo Portela
             </p>
           </Link>
