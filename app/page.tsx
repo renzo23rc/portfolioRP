@@ -282,7 +282,7 @@ export default function HomePage() {
                     <img
                       src={project.image}
                       alt={`Captura de ${project.title}`}
-                      className="h-full w-full object-cover object-top transition-all duration-700 group-hover/img:scale-105 grayscale hover:grayscale-0"
+                      className="h-full w-full object-cover object-top transition-all duration-700 grayscale hover:grayscale-0"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center p-8">
