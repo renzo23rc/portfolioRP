@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { SocialLinks } from "./social-links";
+import { BrandLogo } from "./brand-logo";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -19,13 +20,9 @@ interface SidebarProps {
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
     <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[300px] flex-col border-r border-border/50 md:flex">
-      {/* Logo / Monogram */}
+      {/* Brand Logo */}
       <div className="px-10 pt-10">
-        <Link href="#hero" className="group inline-flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-all group-hover:bg-primary/20">
-            <span className="text-lg font-bold text-primary">RP</span>
-          </div>
-        </Link>
+        <BrandLogo />
       </div>
 
       {/* Navigation */}

@@ -71,9 +71,8 @@ export default function HomePage() {
               {portfolioData.hero.greeting}
               <BlinkingCursor />
             </p>
-            <h1 className="font-display text-5xl font-bold tracking-tighter md:text-7xl lg:text-8xl">
+            <h1 className="font-display text-5xl italic tracking-tight md:text-7xl lg:text-8xl">
               {portfolioData.hero.name}
-              <span className="text-primary">.</span>
             </h1>
             <p className="mt-2 text-xl text-muted-foreground md:text-2xl">
               {portfolioData.hero.title}
