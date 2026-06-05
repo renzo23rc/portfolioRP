@@ -181,9 +181,9 @@ export default function HomePage() {
                 transition={spring}
                 className="relative"
               >
-                <div className="relative aspect-[3/4] w-full max-w-[280px] border border-white/20 transition-colors hover:border-white">
-                  <div className="absolute -bottom-3 -right-3 h-full w-full border border-white/10" />
-                  <div className="flex h-full items-center justify-center">
+                <div className="relative aspect-[3/4] w-full max-w-[280px] border border-white/20 transition-all duration-500 hover:border-white group/img">
+                  <div className="absolute -bottom-3 -right-3 h-full w-full border border-white/10 transition-opacity duration-500 group-hover/img:opacity-0" />
+                  <div className="flex h-full items-center justify-center grayscale transition-all duration-500 group-hover/img:grayscale-0">
                     <div className="text-center">
                       <div className="mx-auto mb-3 h-16 w-16 rounded-full border border-white/10" />
                       <p className="font-mono text-xs uppercase tracking-widest text-white/30">
@@ -274,7 +274,7 @@ export default function HomePage() {
               >
                 {/* Image */}
                 <div
-                  className={`relative aspect-[4/3] overflow-hidden border border-white/10 transition-colors hover:border-white/50 group/img ${
+                  className={`relative aspect-[4/3] overflow-hidden border border-white/10 transition-all duration-500 group/img ${
                     i % 2 === 1 ? "md:order-2" : ""
                   }`}
                 >
@@ -282,7 +282,7 @@ export default function HomePage() {
                     <img
                       src={project.image}
                       alt={`Captura de ${project.title}`}
-                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover/img:scale-105"
+                      className="h-full w-full object-cover object-top transition-all duration-700 group-hover/img:scale-105 grayscale hover:grayscale-0"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center p-8">
