@@ -1,28 +1,31 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Sidebar } from "@/components/sidebar";
 import { MobileNav } from "@/components/mobile-nav";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { portfolioData, type SocialKind } from "@/content/portfolio";
 
+/* ─── Helpers ─── */
 function BlinkingCursor() {
   const [visible, setVisible] = useState(true);
-
   useEffect(() => {
-    const interval = setInterval(() => setVisible((v) => !v), 530);
-    return () => clearInterval(interval);
+    const i = setInterval(() => setVisible((v) => !v), 530);
+    return () => clearInterval(i);
   }, []);
-
   return (
     <span
-      className={`inline-block h-[0.9em] w-[3px] translate-y-[2px] bg-primary transition-opacity ${
+      className={`inline-block h-[0.85em] w-[2px] translate-y-1 bg-white transition-opacity ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     />
   );
 }
+
+const spring = { type: "spring" as const, stiffness: 100, damping: 20 };
+const springFast = { type: "spring" as const, stiffness: 150, damping: 15 };
 
 function SocialIcon({ kind, className }: { kind: SocialKind; className?: string }) {
   const cls = className || "h-5 w-5";
@@ -40,174 +43,238 @@ function SocialIcon({ kind, className }: { kind: SocialKind; className?: string 
   }
 }
 
+/* ─── Section heading (appears once per section) ─── */
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-12">
-      <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={spring}
+      className="mb-16"
+    >
+      <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
         {children}
       </h2>
-      <div className="mt-4 h-px w-16 bg-foreground/20" />
-    </div>
+      <div className="mt-4 h-px w-12 bg-white/20" />
+    </motion.div>
   );
 }
 
+/* ─── Eyebrow (small uppercase label) ─── */
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-4 font-mono text-xs font-light uppercase tracking-[0.2em] text-white/40">
+      {children}
+    </p>
+  );
+}
+
+/* ─── Page ─── */
 export default function HomePage() {
   const activeSection = useActiveSection();
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <Sidebar activeSection={activeSection} />
       <MobileNav />
 
       <main id="main-content" className="min-h-screen md:ml-[200px]">
-        {/* ===== HERO ===== */}
-        <SectionWrapper
+        {/* ═══════════════ HERO ═══════════════ */}
+        <section
           id="hero"
-          sectionName="hero"
-          className="flex min-h-[100dvh] items-center px-8 pt-28 md:px-20 md:pt-0"
+          data-section="hero"
+          className="flex min-h-screen items-center px-8 pt-28 md:px-24 md:pt-0"
         >
-          <div className="max-w-[700px]">
-            <p className="mb-3 font-mono text-base text-primary">
+          <div className="max-w-[720px]">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.1 }}
+              className="mb-4 font-mono text-sm font-light uppercase tracking-[0.15em] text-white/50"
+            >
               {portfolioData.hero.greeting}
               <BlinkingCursor />
-            </p>
-            <h1 className="font-display text-5xl italic tracking-[0.06em] md:text-7xl lg:text-8xl">
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.25 }}
+              className="font-display text-6xl font-black italic leading-none tracking-tighter md:text-8xl lg:text-9xl"
+            >
               {portfolioData.hero.name}
-            </h1>
-            <p className="mt-2 text-xl text-muted-foreground md:text-2xl">
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.4 }}
+              className="mt-6 text-xl font-light leading-relaxed text-white/50 md:text-2xl"
+            >
               {portfolioData.hero.title}
-            </p>
-            <p className="mt-4 max-w-[540px] text-lg leading-relaxed text-muted-foreground">
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.5 }}
+              className="mt-4 max-w-[540px] text-base font-light leading-loose text-white/40 md:text-lg"
+            >
               {portfolioData.hero.summary}
-            </p>
-            <div className="mt-12 flex flex-wrap gap-4">
-              <a
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...spring, delay: 0.65 }}
+              className="mt-12 flex flex-wrap gap-5"
+            >
+              <motion.a
                 href={portfolioData.hero.cta.primary.href}
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg border border-primary bg-primary/10 px-7 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 border border-white bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-black transition-colors duration-200 hover:bg-black hover:text-white"
               >
-                <span className="relative z-10">
-                  {portfolioData.hero.cta.primary.label}
-                </span>
-              </a>
-              <a
+                {portfolioData.hero.cta.primary.label}
+              </motion.a>
+              <motion.a
                 href={portfolioData.hero.cta.secondary.href}
-                className="group inline-flex items-center gap-2 rounded-lg border border-border px-7 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary hover:text-primary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 border border-white/30 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-colors duration-200 hover:border-white hover:bg-white hover:text-black"
               >
                 {portfolioData.hero.cta.secondary.label}
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </div>
-        </SectionWrapper>
+        </section>
 
-        {/* ===== ABOUT ===== */}
-        <SectionWrapper
+        {/* ═══════════════ ABOUT ═══════════════ */}
+        <section
           id="sobre-mi"
-          sectionName="about"
-          className="px-8 py-28 md:px-20"
+          data-section="about"
+          className="border-t border-white/10 px-8 py-32 md:px-24"
         >
           <SectionHeading>Sobre Mí</SectionHeading>
-
-          <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
+          <div className="grid gap-16 md:grid-cols-[3fr_2fr]">
             <div className="space-y-6">
               {portfolioData.about.paragraphs.map((p, i) => (
-                <p
+                <motion.p
                   key={i}
-                  className="text-base leading-[1.75] text-muted-foreground md:text-lg"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ ...spring, delay: i * 0.08 }}
+                  className="text-base font-light leading-loose text-white/50 md:text-lg"
                 >
                   {p}
-                </p>
+                </motion.p>
               ))}
             </div>
 
-            {/* Photo placeholder */}
             {portfolioData.about.photoPlaceholder && (
-              <div className="relative">
-                <div className="relative aspect-[3/4] w-full max-w-[280px] rounded-xl border-2 border-primary/30 bg-card transition-all hover:border-primary">
-                  <div className="absolute -bottom-3 -right-3 h-full w-full rounded-xl border-2 border-primary/10" />
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={spring}
+                className="relative"
+              >
+                <div className="relative aspect-[3/4] w-full max-w-[280px] border border-white/20 transition-colors hover:border-white">
+                  <div className="absolute -bottom-3 -right-3 h-full w-full border border-white/10" />
                   <div className="flex h-full items-center justify-center">
                     <div className="text-center">
-                      <div className="mx-auto mb-2 h-16 w-16 rounded-full bg-muted" />
-                      <p className="text-sm text-muted-foreground">
+                      <div className="mx-auto mb-3 h-16 w-16 rounded-full border border-white/10" />
+                      <p className="font-mono text-xs uppercase tracking-widest text-white/30">
                         Tu foto aquí
                       </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
-        </SectionWrapper>
+        </section>
 
-        {/* ===== EXPERIENCE ===== */}
-        <SectionWrapper
+        {/* ═══════════════ EXPERIENCE ═══════════════ */}
+        <section
           id="experiencia"
-          sectionName="experience"
-          className="px-8 py-28 md:px-20"
+          data-section="experience"
+          className="border-t border-white/10 bg-white px-8 py-32 text-black md:px-24"
         >
-          <SectionHeading>Experiencia</SectionHeading>
+          <div className="max-w-4xl">
+            <SectionHeading>Experiencia</SectionHeading>
 
-          <div className="space-y-14">
-            {portfolioData.experience.map((item, i) => (
-              <div
-                key={i}
-                className="group grid gap-4 md:grid-cols-[120px_1fr]"
-              >
-                {/* Left: Period */}
-                <div>
-                  <p className="pt-0.5 font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    {item.period}
-                  </p>
-                </div>
-
-                {/* Right: Details */}
-                <div className="relative">
-                  {/* Vertical timeline line */}
-                  <div className="absolute left-0 top-0 h-full w-px bg-border/50 group-last:bg-transparent max-md:hidden" />
-                  <div className="pb-8 pl-6 max-md:pl-0">
-                    <div className="absolute left-[-4px] top-[6px] h-2 w-2 rounded-full border-2 border-primary bg-background max-md:hidden" />
-                    <h3 className="font-display text-xl font-semibold">{item.role}</h3>
-                    <p className="mt-0.5 text-sm font-medium text-foreground/70">{item.company}</p>
-                    <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground md:hidden">
+            <div className="space-y-16">
+              {portfolioData.experience.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ ...spring, delay: i * 0.1 }}
+                  className="grid gap-4 md:grid-cols-[140px_1fr]"
+                >
+                  <div>
+                    <p className="font-mono text-xs font-light uppercase tracking-[0.15em] text-black/40">
                       {item.period}
                     </p>
-                    <ul className="mt-3 space-y-2">
-                      {item.highlights.map((h, j) => (
-                        <li
-                          key={j}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <span className="mt-[7px] h-[3px] w-[3px] shrink-0 rounded-full bg-muted-foreground" />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </SectionWrapper>
 
-        {/* ===== PROJECTS ===== */}
-        <SectionWrapper
+                  <div className="relative">
+                    <div className="absolute left-0 top-1 h-full w-px bg-black/10 last:hidden max-md:hidden" />
+                    <div className="pb-8 pl-8 max-md:pl-0">
+                      <div className="absolute left-[-4px] top-[5px] h-2 w-2 border border-black bg-white max-md:hidden" />
+                      <h3 className="text-xl font-black tracking-tight">
+                        {item.role}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium uppercase tracking-widest text-black/50">
+                        {item.company}
+                      </p>
+                      <p className="mt-2 font-mono text-xs uppercase tracking-widest text-black/30 md:hidden">
+                        {item.period}
+                      </p>
+                      <ul className="mt-4 space-y-2">
+                        {item.highlights.map((h, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-3 text-sm font-light leading-relaxed text-black/60"
+                          >
+                            <span className="mt-[9px] h-[3px] w-[3px] shrink-0 bg-black/40" />
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════ PROJECTS ═══════════════ */}
+        <section
           id="proyectos"
-          sectionName="projects"
-          className="px-8 py-28 md:px-20"
+          data-section="projects"
+          className="border-t border-white/10 px-8 py-32 md:px-24"
         >
           <SectionHeading>Proyectos</SectionHeading>
 
-          <div className="space-y-24">
+          <div className="space-y-32">
             {portfolioData.projects.map((project, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="group grid gap-8 md:grid-cols-2 md:items-center"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={spring}
+                className="grid gap-12 md:grid-cols-2 md:items-center"
               >
-                {/* Image side (alternating) */}
+                {/* Image */}
                 <div
-                  className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/50 group/img ${
+                  className={`relative aspect-[4/3] overflow-hidden border border-white/10 transition-colors hover:border-white/50 group/img ${
                     i % 2 === 1 ? "md:order-2" : ""
                   }`}
                 >
@@ -215,237 +282,226 @@ export default function HomePage() {
                     <img
                       src={project.image}
                       alt={`Captura de ${project.title}`}
-                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover/img:scale-105"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center p-8">
-                      <div className="text-center">
-                        <div className="mb-3 text-4xl font-bold text-foreground/10">
-                          {project.title.charAt(0)}
-                        </div>
-                      </div>
+                      <span className="font-black text-6xl text-white/10">
+                        {project.title.charAt(0)}
+                      </span>
                     </div>
                   )}
-                  {/* Gradient overlay at bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 transition-opacity group-hover/img:opacity-100" />
                 </div>
 
-                {/* Text side */}
+                {/* Text */}
                 <div className={i % 2 === 1 ? "md:order-1 md:text-right" : ""}>
-                  <p className="font-mono text-xs uppercase tracking-widest text-primary">
-                    Proyecto Destacado
-                  </p>
-                  <h3 className="font-display mt-2 text-2xl font-bold md:text-3xl">
+                  <Eyebrow>Proyecto Destacado</Eyebrow>
+                  <h3 className="text-2xl font-black tracking-tight md:text-4xl">
                     {project.title}
                   </h3>
                   <div
-                    className={`mt-4 rounded-xl border border-border/50 bg-card p-6 ${
+                    className={`mt-6 border border-white/10 p-8 ${
                       i % 2 === 1 ? "md:ml-auto" : ""
                     }`}
                   >
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="text-sm font-light leading-relaxed text-white/50">
                       {project.description}
                     </p>
                   </div>
                   <div
-                    className={`mt-4 flex flex-wrap gap-2 ${
+                    className={`mt-4 flex flex-wrap gap-3 ${
                       i % 2 === 1 ? "md:justify-end" : ""
                     }`}
                   >
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="font-mono text-xs text-muted-foreground"
+                        className="font-mono text-[11px] font-light uppercase tracking-widest text-white/40"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                   <div
-                    className={`mt-4 flex gap-4 ${
+                    className={`mt-6 flex gap-6 ${
                       i % 2 === 1 ? "md:justify-end" : ""
                     }`}
                   >
                     {project.githubUrl && (
-                      <a
+                      <motion.a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-primary"
+                        whileHover={{ x: 4 }}
+                        className="inline-flex items-center gap-2 border-b border-white/30 pb-0.5 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-white"
                       >
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="h-4 w-4"
-                        >
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.615.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.21.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                         </svg>
                         GitHub
-                      </a>
+                      </motion.a>
                     )}
                     {project.demoUrl && (
-                      <a
+                      <motion.a
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-primary"
+                        whileHover={{ x: 4 }}
+                        className="inline-flex items-center gap-2 border-b border-white/30 pb-0.5 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:border-white"
                       >
                         Demo →
-                      </a>
+                      </motion.a>
                     )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </SectionWrapper>
+        </section>
 
-        {/* ===== SKILLS ===== */}
-        <SectionWrapper
+        {/* ═══════════════ SKILLS (inverted block) ═══════════════ */}
+        <section
           id="habilidades"
-          sectionName="skills"
-          className="px-8 py-28 md:px-20"
+          data-section="skills"
+          className="border-t border-white/10 bg-white px-8 py-32 text-black md:px-24"
         >
-          <SectionHeading>Habilidades</SectionHeading>
+          <div className="max-w-4xl">
+            <SectionHeading>Habilidades</SectionHeading>
 
-          <div className="grid gap-12 md:grid-cols-2">
-            <div>
-              <h3 className="mb-6 font-mono text-sm uppercase tracking-widest text-primary">
-                {portfolioData.skills.technical.label}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {portfolioData.skills.technical.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground transition-all hover:border-primary/50"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-6 font-mono text-sm uppercase tracking-widest text-primary">
-                {portfolioData.skills.soft.label}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {portfolioData.skills.soft.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-lg border border-border bg-card px-4 py-2 text-sm text-foreground transition-all hover:border-primary/50"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <h3 className="mb-6 font-mono text-sm uppercase tracking-widest text-primary">
-              Idiomas
-            </h3>
-            <div className="flex flex-wrap gap-4">
-              {portfolioData.languages.map((lang) => (
-                <div
-                  key={lang.language}
-                  className="flex items-center gap-3 rounded-lg border border-border bg-card px-5 py-3"
+            <div className="grid gap-16 md:grid-cols-2">
+              {(["technical", "soft"] as const).map((type) => (
+                <motion.div
+                  key={type}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={spring}
                 >
-                  <span className="font-semibold">{lang.language}</span>
-                  <span className="h-4 w-px bg-border" />
-                  <span className="text-sm text-muted-foreground">
-                    {lang.level}
-                  </span>
-                </div>
+                  <Eyebrow>
+                    {portfolioData.skills[type].label}
+                  </Eyebrow>
+                  <div className="flex flex-wrap gap-2">
+                    {portfolioData.skills[type].items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="border border-black/20 px-4 py-2 text-sm font-light text-black/70 transition-colors hover:border-black hover:bg-black hover:text-white"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-        </SectionWrapper>
 
-        {/* ===== CONTACT ===== */}
-        <SectionWrapper
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={spring}
+              className="mt-20"
+            >
+              <Eyebrow>Idiomas</Eyebrow>
+              <div className="flex flex-wrap gap-4">
+                {portfolioData.languages.map((lang) => (
+                  <div
+                    key={lang.language}
+                    className="flex items-center gap-4 border border-black/20 px-6 py-3"
+                  >
+                    <span className="text-sm font-bold tracking-tight">
+                      {lang.language}
+                    </span>
+                    <span className="h-5 w-px bg-black/20" />
+                    <span className="text-sm font-light text-black/50">
+                      {lang.level}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══════════════ CONTACT ═══════════════ */}
+        <section
           id="contacto"
-          sectionName="contact"
-          className="px-8 py-28 md:px-20"
+          data-section="contact"
+          className="border-t border-white/10 px-8 py-32 md:px-24"
         >
           <SectionHeading>Contacto</SectionHeading>
 
-          <div className="max-w-[600px]">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={spring}
+            className="max-w-[600px]"
+          >
+            <p className="text-lg font-light leading-relaxed text-white/50">
               {portfolioData.contact.description}
             </p>
 
-            <a
+            <motion.a
               href={`mailto:${portfolioData.contact.email}`}
-              className="mt-8 inline-flex items-center gap-3 rounded-lg border border-primary/50 bg-primary/5 px-8 py-4 text-lg font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="mt-10 inline-flex items-center gap-3 border border-white/30 px-10 py-5 text-base font-bold uppercase tracking-widest text-white transition-colors hover:border-white hover:bg-white hover:text-black"
             >
               {portfolioData.contact.email}
-              <span className="text-sm">→</span>
-            </a>
+            </motion.a>
 
-            <div className="mt-12">
-              <h3 className="mb-4 font-mono text-sm uppercase tracking-widest text-muted-foreground">
-                Encontrame en
-              </h3>
-              <div className="flex flex-wrap gap-3">
+            <div className="mt-16">
+              <Eyebrow>Encontrame en</Eyebrow>
+              <div className="flex flex-wrap gap-4">
                 {portfolioData.socialLinks.map((link) => (
-                  <a
+                  <motion.a
                     key={link.kind}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="rounded-lg border border-border bg-card p-3 text-muted-foreground transition-all hover:border-primary hover:text-primary hover:bg-primary/5"
+                    whileHover={{ scale: 1.05 }}
+                    className="border border-white/20 p-3 text-white/50 transition-colors hover:border-white hover:text-white"
                   >
                     <SocialIcon kind={link.kind} className="h-5 w-5" />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
-          </div>
-        </SectionWrapper>
+          </motion.div>
+        </section>
 
-        {/* Footer */}
-        <footer className="border-t border-border px-8 py-6 md:px-20">
+        {/* ═══════════════ FOOTER ═══════════════ */}
+        <footer className="border-t border-white/10 px-8 py-8 md:px-24">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            {/* Tech stack marquee */}
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="font-mono text-primary">$</span>
-              <span className="font-mono">built with</span>
-              <span className="flex items-center gap-1.5">
-                {["Next.js", "React", "Tailwind", "Motion", "Inter"].map(
-                  (tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md bg-card px-2 py-0.5 font-mono text-[10px] text-muted-foreground ring-1 ring-border transition-colors hover:text-primary hover:ring-primary/50"
-                    >
-                      {tech}
-                    </span>
-                  ),
-                )}
-              </span>
+            <div className="flex items-center gap-3 text-xs font-light text-white/30">
+              <span className="font-mono text-white/50">$</span>
+              <span className="font-mono text-white/40">built with</span>
+              <div className="flex items-center gap-2">
+                {["Next.js", "React", "Tailwind", "Motion", "Inter"].map((t) => (
+                  <span
+                    key={t}
+                    className="border border-white/10 px-3 py-1 font-mono text-[10px] font-light uppercase tracking-wider text-white/30 transition-colors hover:border-white/50 hover:text-white/70"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
-
-            {/* Right side */}
             <div className="flex items-center gap-4">
-              <span className="font-mono text-[10px] text-muted-foreground">
+              <span className="font-mono text-[10px] font-light uppercase tracking-wider text-white/30">
                 © {new Date().getFullYear()} Renzo Portela
               </span>
-              <a
+              <motion.a
                 href="#hero"
-                className="group flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-all hover:border-primary hover:text-primary"
+                whileHover={{ y: -2 }}
+                className="flex h-9 w-9 items-center justify-center border border-white/20 text-white/30 transition-colors hover:border-white hover:text-white"
                 aria-label="Volver al inicio"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5"
-                >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
                   <path d="M18 15l-6-6-6 6" />
                 </svg>
-              </a>
+              </motion.a>
             </div>
           </div>
         </footer>
