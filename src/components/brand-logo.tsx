@@ -8,7 +8,7 @@ export function BrandLogo() {
 
   return (
     <Link href="#hero" className="group block">
-      <div className="relative flex h-10 w-10 items-center justify-center">
+      <div className="relative flex h-9 w-9 items-center justify-center">
         <motion.span
           className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary"
           initial={reduce ? false : { opacity: 0, x: -6 }}

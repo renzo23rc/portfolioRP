@@ -19,14 +19,14 @@ interface SidebarProps {
 
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[300px] flex-col border-r border-border/50 md:flex">
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[240px] flex-col border-r border-border/50 md:flex">
       {/* Brand Logo */}
-      <div className="px-10 pt-10">
+      <div className="px-8 pt-8">
         <BrandLogo />
       </div>
 
       {/* Navigation */}
-      <nav className="mt-16 flex flex-col gap-1 px-8" role="navigation" aria-label="Navegación principal">
+      <nav className="mt-14 flex flex-col gap-1 px-6" role="navigation" aria-label="Navegación principal">
         {navItems.map((item) => {
           const isActive = activeSection === item.section;
           return (
@@ -64,7 +64,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col items-start gap-3 px-8 pb-10">
+      <div className="mt-auto flex flex-col items-start gap-3 px-6 pb-8">
         <SocialLinks variant="sidebar" />
         <a
           href="mailto:portelarenzo@gmail.com"
