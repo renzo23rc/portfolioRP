@@ -10,11 +10,11 @@ export default function HomePage() {
   const activeSection = useActiveSection();
 
   return (
-    <div className="md:grid md:grid-cols-[300px_1fr]">
+    <div>
       <Sidebar activeSection={activeSection} />
       <MobileNav />
 
-      <main id="main-content" className="min-h-screen">
+      <main id="main-content" className="min-h-screen md:ml-[300px]">
         {/* Hero Section */}
         <SectionWrapper
           id="hero"
