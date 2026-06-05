@@ -63,9 +63,8 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col items-start gap-4 px-8 pb-10">
+      <div className="mt-auto flex flex-col items-start gap-3 px-8 pb-10">
         <SocialLinks variant="sidebar" />
-        <div className="h-8 w-px bg-border" />
         <a
           href="mailto:portelarenzo@gmail.com"
           aria-label="Enviar email"
