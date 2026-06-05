@@ -406,8 +406,48 @@ export default function HomePage() {
         </SectionWrapper>
 
         {/* Footer */}
-        <footer className="border-t border-border px-8 py-8 text-center text-sm text-muted-foreground md:px-20">
-          <p>Construido con Next.js por Renzo Portela</p>
+        <footer className="border-t border-border px-8 py-6 md:px-20">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            {/* Tech stack marquee */}
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="font-mono text-primary">$</span>
+              <span className="font-mono">built with</span>
+              <span className="flex items-center gap-1.5">
+                {["Next.js", "React", "Tailwind", "Motion", "Inter"].map(
+                  (tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md bg-card px-2 py-0.5 font-mono text-[10px] text-muted-foreground ring-1 ring-border transition-colors hover:text-primary hover:ring-primary/50"
+                    >
+                      {tech}
+                    </span>
+                  ),
+                )}
+              </span>
+            </div>
+
+            {/* Right side */}
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[10px] text-muted-foreground">
+                © {new Date().getFullYear()} Renzo Portela
+              </span>
+              <a
+                href="#hero"
+                className="group flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-all hover:border-primary hover:text-primary"
+                aria-label="Volver al inicio"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5"
+                >
+                  <path d="M18 15l-6-6-6 6" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </footer>
       </main>
     </div>
