@@ -9,66 +9,40 @@ export function BrandLogo() {
   return (
     <Link href="#hero" className="group block">
       <div className="relative flex h-12 w-12 items-center justify-center">
-        {/* Outer ring */}
-        <motion.svg
-          viewBox="0 0 48 48"
-          className="absolute inset-0 h-12 w-12"
-          aria-hidden="true"
-        >
-          {/* Hexagon outline */}
-          <motion.polygon
-            points="24 2 44 13 44 35 24 46 4 35 4 13"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="text-primary/40 transition-colors group-hover:text-primary"
-            initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-            animate={reduce ? false : { pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          />
-        </motion.svg>
-
-        {/* Inner decorative dot */}
+        {/* Subtle background shape */}
         <motion.div
-          className="absolute h-1 w-1 rounded-full bg-primary"
-          animate={
-            reduce
-              ? undefined
-              : {
-                  scale: [1, 1.4, 1],
-                  opacity: [0.6, 1, 0.6],
-                }
-          }
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="absolute inset-0 rounded-xl border border-primary/20 bg-primary/[0.03] transition-colors group-hover:border-primary/40 group-hover:bg-primary/[0.06]"
+          initial={false}
         />
 
-        {/* Letters R + P combined */}
-        <motion.span
-          className="relative z-10 text-[15px] font-bold text-primary mix-blend-difference"
-          animate={
-            reduce
-              ? undefined
-              : {
-                  y: [0, -1, 0],
-                }
-          }
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          RP
-        </motion.span>
+        {/* Initials */}
+        <div className="relative z-10 flex items-center gap-[1px]">
+          <motion.span
+            className="font-display text-[17px] italic tracking-[0.02em] text-primary"
+            initial={reduce ? false : { y: 8, opacity: 0 }}
+            animate={reduce ? false : { y: 0, opacity: 1 }}
+            transition={{ delay: 0, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            R
+          </motion.span>
+          <motion.span
+            className="font-display text-[17px] italic tracking-[0.02em] text-primary"
+            initial={reduce ? false : { y: 8, opacity: 0 }}
+            animate={reduce ? false : { y: 0, opacity: 1 }}
+            transition={{ delay: 0.15, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            P
+          </motion.span>
+        </div>
 
-        {/* Hover glow */}
+        {/* Hover glow ring */}
         <motion.div
-          className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 blur-xl transition-opacity group-hover:opacity-100"
-          initial={false}
+          className="absolute -inset-1 rounded-xl opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)",
+          }}
+          aria-hidden="true"
         />
       </div>
     </Link>
