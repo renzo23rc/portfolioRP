@@ -151,6 +151,7 @@ export const portfolioData: PortfolioData = {
       ],
       image: "/projects/waterpolo-ger.png",
       githubUrl: "https://github.com/renzo23rc/waterpolo-ger",
+      demoUrl: "https://waterpologer.me",
     },
     {
       title: "Catálogo Distribuidora",
