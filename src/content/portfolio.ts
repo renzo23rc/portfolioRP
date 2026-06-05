@@ -149,6 +149,7 @@ export const portfolioData: PortfolioData = {
         "Tailwind CSS",
         "shadcn/ui",
       ],
+      image: "/projects/waterpolo-ger.png",
       githubUrl: "https://github.com/renzo23rc/waterpolo-ger",
     },
     {
@@ -156,6 +157,7 @@ export const portfolioData: PortfolioData = {
       description:
         "Catálogo de productos para distribuidora mayorista con carrito de compras y pedidos vía WhatsApp. Panel de administración con gestión de stock, pedidos y clientes.",
       technologies: ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
+      image: "/projects/catalogo-claudio.png",
       demoUrl: "https://catalogo-claudio.vercel.app",
     },
   ],

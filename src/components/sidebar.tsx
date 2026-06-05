@@ -68,10 +68,21 @@ export function Sidebar({ activeSection }: SidebarProps) {
         <div className="ml-4 h-16 w-px bg-border" />
         <a
           href="mailto:portelarenzo@gmail.com"
-          className="ml-4 text-xs font-medium tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
-          style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+          aria-label="Enviar email"
+          className="ml-4 text-muted-foreground transition-colors hover:text-primary"
         >
-          portelarenzo@gmail.com
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M22 4L12 13 2 4" />
+          </svg>
         </a>
       </div>
     </aside>

@@ -207,28 +207,27 @@ export default function HomePage() {
               >
                 {/* Image side (alternating) */}
                 <div
-                  className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/50 ${
+                  className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/50 group/img ${
                     i % 2 === 1 ? "md:order-2" : ""
                   }`}
                 >
-                  {/* Placeholder with tech badges */}
-                  <div className="flex h-full items-center justify-center p-8">
-                    <div className="text-center">
-                      <div className="mb-3 text-4xl font-bold text-foreground/10">
-                        {project.title.charAt(0)}
-                      </div>
-                      <div className="flex flex-wrap justify-center gap-2">
-                        {project.technologies.slice(0, 4).map((tech) => (
-                          <span
-                            key={tech}
-                            className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`Captura de ${project.title}`}
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-8">
+                      <div className="text-center">
+                        <div className="mb-3 text-4xl font-bold text-foreground/10">
+                          {project.title.charAt(0)}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  {/* Gradient overlay at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 transition-opacity group-hover/img:opacity-100" />
                 </div>
 
                 {/* Text side */}
