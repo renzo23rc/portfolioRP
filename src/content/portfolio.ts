@@ -154,7 +154,7 @@ export const portfolioData: PortfolioData = {
     {
       title: "Catálogo Claudio",
       description:
-        "Catálogo de productos con carrito de compras y pedidos vía WhatsApp. Panel de administración con gestión de stock, pedidos y clientes.",
+        "Catálogo de productos para distribuidora mayorista con carrito de compras y pedidos vía WhatsApp. Panel de administración con gestión de stock, pedidos y clientes.",
       technologies: ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
       demoUrl: "https://catalogo-claudio.vercel.app",
     },
