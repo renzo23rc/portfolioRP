@@ -39,6 +39,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",
               )}
+              aria-current={isActive ? "page" : undefined}
             >
               {/* Active indicator line */}
               <span

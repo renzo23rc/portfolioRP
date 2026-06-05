@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     locale: "es_AR",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Renzo Portela | Portfolio",
+    description:
+      "Portfolio personal de Renzo Portela — Estudiante de Informática, Desarrollador y Deportista.",
+  },
 };
 
 export default function RootLayout({
