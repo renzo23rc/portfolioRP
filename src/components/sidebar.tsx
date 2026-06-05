@@ -20,27 +20,15 @@ interface SidebarProps {
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
     <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[200px] flex-col border-r border-border/50 md:flex">
-      {/* Brand Logo + Name */}
+      {/* Brand Logo */}
       <div className="px-5 pt-6">
-        <BrandLogo />
-        <div
-          className={cn(
-            "mt-1 overflow-hidden transition-all duration-500",
-            activeSection && activeSection !== "hero"
-              ? "max-h-10 opacity-100"
-              : "max-h-0 opacity-0",
-          )}
-        >
-          <Link href="#hero" className="block">
-            <p className="font-display text-base italic tracking-[0.03em] text-foreground/90 transition-colors hover:text-primary">
-              Renzo Portela
-            </p>
-          </Link>
-        </div>
+        <BrandLogo
+          showName={!!(activeSection && activeSection !== "hero")}
+        />
       </div>
 
       {/* Navigation */}
-      <nav className="mt-8 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
+      <nav className="mt-10 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
         {navItems.map((item) => {
           const isActive = activeSection === item.section;
           return (
