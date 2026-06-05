@@ -46,9 +46,9 @@ export function SocialLinks({ variant = "sidebar", className }: SocialLinksProps
   return (
     <div
       className={cn(
-        "flex items-center",
-        variant === "sidebar" && "flex-col gap-3",
-        variant === "inline" && "flex-wrap gap-4",
+        "flex gap-1",
+        variant === "sidebar" && "flex-col items-start",
+        variant === "inline" && "flex-wrap items-center gap-3",
         className,
       )}
     >

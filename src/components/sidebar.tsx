@@ -63,12 +63,12 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col items-center gap-6 pb-10">
+      <div className="mt-auto flex flex-col items-start gap-6 px-8 pb-10">
         <SocialLinks variant="sidebar" />
-        <div className="h-16 w-px bg-border" />
+        <div className="ml-4 h-16 w-px bg-border" />
         <a
           href="mailto:portelarenzo@gmail.com"
-          className="text-xs font-medium tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+          className="ml-4 text-xs font-medium tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
         >
           portelarenzo@gmail.com
