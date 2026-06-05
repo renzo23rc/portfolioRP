@@ -63,29 +63,27 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col gap-4 px-8 pb-10">
-        <div className="flex items-center gap-3">
-          <SocialLinks variant="sidebar" />
-          <div className="h-6 w-px bg-border" />
-          <a
-            href="mailto:portelarenzo@gmail.com"
-            aria-label="Enviar email"
-            className="text-muted-foreground transition-colors hover:text-primary"
+      <div className="mt-auto flex flex-col items-start gap-4 px-8 pb-10">
+        <SocialLinks variant="sidebar" />
+        <div className="h-8 w-px bg-border" />
+        <a
+          href="mailto:portelarenzo@gmail.com"
+          aria-label="Enviar email"
+          className="p-1 text-muted-foreground transition-colors hover:text-primary"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5"
-            >
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M22 4L12 13 2 4" />
-            </svg>
-          </a>
-        </div>
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M22 4L12 13 2 4" />
+          </svg>
+        </a>
       </div>
     </aside>
   );
