@@ -42,11 +42,11 @@ function SocialIcon({ kind, className }: { kind: SocialKind; className?: string 
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-10">
-      <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+    <div className="mb-12">
+      <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
         {children}
       </h2>
-      <div className="mt-3 h-px w-12 bg-primary/50" />
+      <div className="mt-4 h-px w-16 bg-foreground/20" />
     </div>
   );
 }
@@ -77,10 +77,10 @@ export default function HomePage() {
             <p className="mt-2 text-xl text-muted-foreground md:text-2xl">
               {portfolioData.hero.title}
             </p>
-            <p className="mt-6 max-w-[540px] leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-[540px] text-lg leading-relaxed text-muted-foreground">
               {portfolioData.hero.summary}
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-12 flex flex-wrap gap-4">
               <a
                 href={portfolioData.hero.cta.primary.href}
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg border border-primary bg-primary/10 px-7 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground"
@@ -110,12 +110,12 @@ export default function HomePage() {
         >
           <SectionHeading>Sobre Mí</SectionHeading>
 
-          <div className="grid gap-10 md:grid-cols-[3fr_2fr]">
-            <div className="space-y-4">
+          <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
+            <div className="space-y-6">
               {portfolioData.about.paragraphs.map((p, i) => (
                 <p
                   key={i}
-                  className="text-base leading-relaxed text-muted-foreground md:text-lg"
+                  className="text-base leading-[1.75] text-muted-foreground md:text-lg"
                 >
                   {p}
                 </p>
@@ -149,7 +149,7 @@ export default function HomePage() {
         >
           <SectionHeading>Experiencia</SectionHeading>
 
-          <div className="space-y-12">
+          <div className="space-y-14">
             {portfolioData.experience.map((item, i) => (
               <div
                 key={i}
@@ -157,7 +157,7 @@ export default function HomePage() {
               >
                 {/* Left: Period */}
                 <div>
-                  <p className="pt-1 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <p className="pt-0.5 font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">
                     {item.period}
                   </p>
                 </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
                   <div className="pb-8 pl-6 max-md:pl-0">
                     <div className="absolute left-[-4px] top-[6px] h-2 w-2 rounded-full border-2 border-primary bg-background max-md:hidden" />
                     <h3 className="font-display text-xl font-semibold">{item.role}</h3>
-                    <p className="text-primary">{item.company}</p>
+                    <p className="mt-0.5 text-sm font-medium text-foreground/70">{item.company}</p>
                     <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground md:hidden">
                       {item.period}
                     </p>
