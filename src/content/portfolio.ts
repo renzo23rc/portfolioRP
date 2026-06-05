@@ -153,7 +153,7 @@ export const portfolioData: PortfolioData = {
       githubUrl: "https://github.com/renzo23rc/waterpolo-ger",
     },
     {
-      title: "Catálogo Claudio",
+      title: "Catálogo Distribuidora",
       description:
         "Catálogo de productos para distribuidora mayorista con carrito de compras y pedidos vía WhatsApp. Panel de administración con gestión de stock, pedidos y clientes.",
       technologies: ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
