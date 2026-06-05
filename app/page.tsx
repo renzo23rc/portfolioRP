@@ -40,29 +40,13 @@ function SocialIcon({ kind, className }: { kind: SocialKind; className?: string 
   }
 }
 
-function NumberedHeading({
-  number,
-  children,
-}: {
-  number: string;
-  children: React.ReactNode;
-}) {
+function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mb-10">
-      {/* Decorative background number */}
-      <span
-        aria-hidden="true"
-        className="absolute -left-4 -top-12 select-none text-[120px] font-bold leading-none text-foreground/5 md:-left-8 md:text-[160px]"
-      >
-        {number.padStart(2, "0")}
-      </span>
-      <h2 className="font-display relative flex items-center gap-4 text-2xl font-bold md:text-3xl">
-        <span className="font-mono text-sm text-primary md:text-base">
-          {number}.
-        </span>
+    <div className="mb-10">
+      <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
         {children}
-        <span className="h-px flex-1 bg-border" />
       </h2>
+      <div className="mt-3 h-px w-12 bg-primary/50" />
     </div>
   );
 }
@@ -124,7 +108,7 @@ export default function HomePage() {
           sectionName="about"
           className="px-8 py-28 md:px-20"
         >
-          <NumberedHeading number="01">Sobre Mí</NumberedHeading>
+          <SectionHeading>Sobre Mí</SectionHeading>
 
           <div className="grid gap-10 md:grid-cols-[3fr_2fr]">
             <div className="space-y-4">
@@ -163,7 +147,7 @@ export default function HomePage() {
           sectionName="experience"
           className="px-8 py-28 md:px-20"
         >
-          <NumberedHeading number="02">Experiencia</NumberedHeading>
+          <SectionHeading>Experiencia</SectionHeading>
 
           <div className="space-y-12">
             {portfolioData.experience.map((item, i) => (
@@ -213,7 +197,7 @@ export default function HomePage() {
           sectionName="projects"
           className="px-8 py-28 md:px-20"
         >
-          <NumberedHeading number="03">Proyectos</NumberedHeading>
+          <SectionHeading>Proyectos</SectionHeading>
 
           <div className="space-y-24">
             {portfolioData.projects.map((project, i) => (
@@ -322,7 +306,7 @@ export default function HomePage() {
           sectionName="skills"
           className="px-8 py-28 md:px-20"
         >
-          <NumberedHeading number="04">Habilidades</NumberedHeading>
+          <SectionHeading>Habilidades</SectionHeading>
 
           <div className="grid gap-12 md:grid-cols-2">
             <div>
@@ -384,7 +368,7 @@ export default function HomePage() {
           sectionName="contact"
           className="px-8 py-28 md:px-20"
         >
-          <NumberedHeading number="05">Contacto</NumberedHeading>
+          <SectionHeading>Contacto</SectionHeading>
 
           <div className="max-w-[600px]">
             <p className="text-lg leading-relaxed text-muted-foreground">
