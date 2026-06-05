@@ -411,11 +411,7 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className="border-t border-border px-8 py-8 text-center text-sm text-muted-foreground md:px-20">
-          <p>
-            Diseñado con{" "}
-            <span className="text-primary">Inspiración en Brittany Chiang</span>
-            . Construido con Next.js por Renzo Portela.
-          </p>
+          <p>Construido con Next.js por Renzo Portela</p>
         </footer>
       </main>
     </div>
