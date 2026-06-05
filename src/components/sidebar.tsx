@@ -19,16 +19,20 @@ interface SidebarProps {
 
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[200px] flex-col border-r border-border/50 md:flex">
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[200px] flex-col border-r border-white/10 bg-black md:flex">
       {/* Brand Logo */}
-      <div className="px-5 pt-6">
+      <div className="px-5 pt-8">
         <BrandLogo
           showName={!!(activeSection && activeSection !== "hero")}
         />
       </div>
 
       {/* Navigation */}
-      <nav className="mt-10 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
+      <nav
+        className="mt-12 flex flex-col gap-1 px-5"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
         {navItems.map((item) => {
           const isActive = activeSection === item.section;
           return (
@@ -36,42 +40,34 @@ export function Sidebar({ activeSection }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "group relative flex items-center gap-3 py-2.5 text-sm transition-all",
+                "group flex items-center gap-3 py-2.5 text-sm font-light uppercase tracking-[0.12em] transition-all",
                 isActive
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                  ? "text-white"
+                  : "text-white/30 hover:text-white/70",
               )}
               aria-current={isActive ? "page" : undefined}
             >
-              {/* Active indicator line */}
-                  <span
-                    className={cn(
-                      "inline-block h-px transition-all duration-300",
-                      isActive
-                        ? "w-8 bg-primary"
-                        : "w-5 bg-muted-foreground/30 group-hover:w-8 group-hover:bg-foreground/50",
-                    )}
-                  />
               <span
                 className={cn(
-                  "font-medium transition-colors",
-                  isActive && "text-primary",
+                  "inline-block h-px transition-all duration-300",
+                  isActive
+                    ? "w-8 bg-white"
+                    : "w-5 bg-white/20 group-hover:w-8 group-hover:bg-white/40",
                 )}
-              >
-                {item.label}
-              </span>
+              />
+              <span>{item.label}</span>
             </Link>
           );
         })}
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col items-start gap-2 px-5 pb-6">
+      <div className="mt-auto flex flex-col items-start gap-3 px-5 pb-8">
         <SocialLinks variant="sidebar" />
         <a
           href="mailto:portelarenzo@gmail.com"
           aria-label="Enviar email"
-          className="p-1 text-muted-foreground transition-colors hover:text-primary"
+          className="p-1 text-white/30 transition-colors hover:text-white"
         >
           <svg
             viewBox="0 0 24 24"
@@ -80,7 +76,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="h-5 w-5"
+            className="h-4 w-4"
           >
             <rect x="2" y="4" width="20" height="16" rx="2" />
             <path d="M22 4L12 13 2 4" />

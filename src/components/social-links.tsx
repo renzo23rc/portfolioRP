@@ -4,13 +4,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { portfolioData, type SocialKind } from "@/content/portfolio";
 
-interface SocialLinksProps {
-  variant?: "sidebar" | "inline";
-  className?: string;
-}
-
 function SocialIcon({ kind, className }: { kind: SocialKind; className?: string }) {
-  const cls = cn("h-5 w-5", className);
+  const cls = cn("h-4 w-4", className);
 
   switch (kind) {
     case "github":
@@ -42,13 +37,18 @@ function SocialIcon({ kind, className }: { kind: SocialKind; className?: string 
   }
 }
 
+interface SocialLinksProps {
+  variant?: "sidebar" | "inline";
+  className?: string;
+}
+
 export function SocialLinks({ variant = "sidebar", className }: SocialLinksProps) {
   return (
     <div
       className={cn(
         "flex gap-1",
-        variant === "sidebar" && "flex-col items-start gap-0.5",
-        variant === "inline" && "flex-wrap items-center gap-3",
+        variant === "sidebar" && "flex-col items-start",
+        variant === "inline" && "flex-wrap items-center gap-4",
         className,
       )}
     >
@@ -60,12 +60,12 @@ export function SocialLinks({ variant = "sidebar", className }: SocialLinksProps
           rel="noopener noreferrer"
           aria-label={link.label}
           className={cn(
-            "text-muted-foreground transition-all hover:text-primary",
-            variant === "sidebar" && "p-1.5",
-            variant === "inline" && "hover:scale-110",
+            "text-white/30 transition-all",
+            variant === "sidebar" && "p-1.5 hover:text-white",
+            variant === "inline" && "hover:text-white",
           )}
         >
-          <SocialIcon kind={link.kind} className={variant === "sidebar" ? "h-4 w-4" : "h-6 w-6"} />
+          <SocialIcon kind={link.kind} className={variant === "sidebar" ? "h-4 w-4" : "h-5 w-5"} />
         </Link>
       ))}
     </div>
