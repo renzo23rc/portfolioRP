@@ -27,18 +27,18 @@
   --foreground: #f4f4f5;
   --card: #18181b;
   --card-foreground: #f4f4f5;
-  --primary: #2dd4bf;
+  --primary: #38bdf8;
   --primary-foreground: #09090b;
   --secondary: #1e1e24;
   --secondary-foreground: #f4f4f5;
   --muted: #18181b;
   --muted-foreground: #a1a1aa;
-  --accent: #2dd4bf;
+  --accent: #38bdf8;
   --accent-foreground: #09090b;
   --destructive: #dc2626;
   --border: #27272a;
   --input: #27272a;
-  --ring: #2dd4bf;
+  --ring: #38bdf8;
   --radius: 0.75rem;
 }
 
