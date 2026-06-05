@@ -47,7 +47,7 @@ export function SocialLinks({ variant = "sidebar", className }: SocialLinksProps
     <div
       className={cn(
         "flex gap-1",
-        variant === "sidebar" && "flex-col items-start",
+        variant === "sidebar" && "flex-col items-start gap-0.5",
         variant === "inline" && "flex-wrap items-center gap-3",
         className,
       )}
@@ -61,11 +61,11 @@ export function SocialLinks({ variant = "sidebar", className }: SocialLinksProps
           aria-label={link.label}
           className={cn(
             "text-muted-foreground transition-all hover:text-primary",
-            variant === "sidebar" && "p-1",
+            variant === "sidebar" && "p-1.5",
             variant === "inline" && "hover:scale-110",
           )}
         >
-          <SocialIcon kind={link.kind} className={variant === "sidebar" ? "h-5 w-5" : "h-6 w-6"} />
+          <SocialIcon kind={link.kind} className={variant === "sidebar" ? "h-4 w-4" : "h-6 w-6"} />
         </Link>
       ))}
     </div>

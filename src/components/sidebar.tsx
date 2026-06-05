@@ -19,14 +19,14 @@ interface SidebarProps {
 
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[240px] flex-col border-r border-border/50 md:flex">
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[200px] flex-col border-r border-border/50 md:flex">
       {/* Brand Logo */}
-      <div className="px-8 pt-8">
+      <div className="px-5 pt-6">
         <BrandLogo />
       </div>
 
       {/* Navigation */}
-      <nav className="mt-14 flex flex-col gap-1 px-6" role="navigation" aria-label="Navegación principal">
+      <nav className="mt-12 flex flex-col gap-0.5 px-5" role="navigation" aria-label="Navegación principal">
         {navItems.map((item) => {
           const isActive = activeSection === item.section;
           return (
@@ -34,7 +34,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "group relative flex items-center gap-4 py-3 text-sm transition-all",
+                "group relative flex items-center gap-3 py-2.5 text-sm transition-all",
                 isActive
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",
@@ -42,14 +42,14 @@ export function Sidebar({ activeSection }: SidebarProps) {
               aria-current={isActive ? "page" : undefined}
             >
               {/* Active indicator line */}
-              <span
-                className={cn(
-                  "inline-block h-px transition-all duration-300",
-                  isActive
-                    ? "w-12 bg-primary"
-                    : "w-8 bg-muted-foreground/30 group-hover:w-12 group-hover:bg-foreground/50",
-                )}
-              />
+                  <span
+                    className={cn(
+                      "inline-block h-px transition-all duration-300",
+                      isActive
+                        ? "w-8 bg-primary"
+                        : "w-5 bg-muted-foreground/30 group-hover:w-8 group-hover:bg-foreground/50",
+                    )}
+                  />
               <span
                 className={cn(
                   "font-medium transition-colors",
@@ -64,7 +64,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto flex flex-col items-start gap-3 px-6 pb-8">
+      <div className="mt-auto flex flex-col items-start gap-2 px-5 pb-6">
         <SocialLinks variant="sidebar" />
         <a
           href="mailto:portelarenzo@gmail.com"

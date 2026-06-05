@@ -59,7 +59,7 @@ export default function HomePage() {
       <Sidebar activeSection={activeSection} />
       <MobileNav />
 
-      <main id="main-content" className="min-h-screen md:ml-[240px]">
+      <main id="main-content" className="min-h-screen md:ml-[200px]">
         {/* ===== HERO ===== */}
         <SectionWrapper
           id="hero"
