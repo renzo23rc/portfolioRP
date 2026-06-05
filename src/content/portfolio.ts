@@ -116,15 +116,6 @@ export const portfolioData: PortfolioData = {
       ],
     },
     {
-      company: "Taura - Forest",
-      role: "Relaciones Públicas",
-      period: "Ago 2025 — Actualidad",
-      highlights: [
-        "Desarrollo y ejecución de estrategias de comunicación e imagen corporativa.",
-        "Organización y supervisión de eventos corporativos.",
-      ],
-    },
-    {
       company: "Gimnasia y Esgrima de Rosario",
       role: "Deportista - Waterpolo",
       period: "Verano 2019 — Actualidad",
