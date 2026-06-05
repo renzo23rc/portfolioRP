@@ -20,9 +20,23 @@ interface SidebarProps {
 export function Sidebar({ activeSection }: SidebarProps) {
   return (
     <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[200px] flex-col border-r border-border/50 md:flex">
-      {/* Brand Logo */}
+      {/* Brand Logo + Name */}
       <div className="px-5 pt-6">
         <BrandLogo />
+        <div
+          className={cn(
+            "mt-2 overflow-hidden transition-all duration-500",
+            activeSection && activeSection !== "hero"
+              ? "max-h-10 opacity-100"
+              : "max-h-0 opacity-0",
+          )}
+        >
+          <Link href="#hero" className="block">
+            <p className="font-display text-sm italic tracking-[0.04em] text-foreground/80 hover:text-primary transition-colors">
+              Renzo Portela
+            </p>
+          </Link>
+        </div>
       </div>
 
       {/* Navigation */}
