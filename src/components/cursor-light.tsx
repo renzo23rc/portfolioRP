@@ -44,7 +44,7 @@ export function CursorLight() {
           top: pos.y,
           opacity: isVisible ? 1 : 0,
           background:
-            "radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%)",
         }}
       />
     </div>
